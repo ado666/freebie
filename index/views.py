@@ -7,7 +7,8 @@ import urllib2, urllib
 
 # Create your views here.
 def main(request):
-    post_data = [{'address': 'город Москва, Москва, Уральская улица'}]     # a sequence of two element tuples
+    #post_data = [{'address': 'город Москва, Москва, Уральская улица'}]     # a sequence of two element tuples
+    post_data = [{'address': 'asd'}]     # a sequence of two element tuples
     result = urllib2.urlopen('http://example.com', urllib.urlencode(post_data))
     content = result.read()
     
