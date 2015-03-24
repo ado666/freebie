@@ -7,7 +7,7 @@ import urllib2, urllib
 
 # Create your views here.
 def main(request):
-    post_data = {'address': u'город+Москва,+Москва,+Уральская+улица'}     # a sequence of two element tuples
+    post_data = {'address': u'город Москва, Москва, Уральская улица'}     # a sequence of two element tuples
     result = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json', urllib.urlencode(post_data))
     content = result.read()
 
