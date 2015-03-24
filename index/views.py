@@ -9,7 +9,7 @@ import urllib2, urllib
 def main(request):
     post_data = {'address': 'город Москва, Москва, Уральская улица'}     # a sequence of two element tuples
     # post_data = {'address': 'asd'}     # a sequence of two element tuples
-    result = urllib2.urlopen('http://example.com', urllib.urlencode(post_data))
+    result = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json', urllib.urlencode(post_data))
     content = result.read()
     
     return HttpResponse("Hello, world. You're at the polls index."+content)
