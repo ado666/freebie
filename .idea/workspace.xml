@@ -28,7 +28,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="27" selection-start="396" selection-end="396" vertical-scroll-proportion="0.26872963" vertical-offset="0" max-vertical-offset="614">
+            <state line="13" column="67" selection-start="472" selection-end="472" vertical-scroll-proportion="0.31758958" vertical-offset="0" max-vertical-offset="614">
               <folding>
                 <element signature="e#47#83#0" expanded="true" />
               </folding>
@@ -243,7 +243,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="27" selection-start="396" selection-end="396" vertical-scroll-proportion="0.26872963" vertical-offset="0" max-vertical-offset="614">
+        <state line="13" column="67" selection-start="472" selection-end="472" vertical-scroll-proportion="0.31758958" vertical-offset="0" max-vertical-offset="614">
           <folding>
             <element signature="e#47#83#0" expanded="true" />
           </folding>
