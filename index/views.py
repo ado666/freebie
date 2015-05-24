@@ -4,19 +4,38 @@
 from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import Context
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-import urllib2, urllib
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+
+import json
 
 # Create your views here.
 def index(request):
-    # post_data = {'address': 'asd'}     # a sequence of two element tuples
-    # result = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json', urllib.urlencode(post_data))
-    # content = result.read()
-    # t = get_template('main.html')
-    # t = template.Template('My name is {{ name }}.')
-    # c = template.Context({'name': 'Adrian'})
-    # return t.render()
-    return render_to_response('main.html', {'users': ['msy', 'asd']})
-    
-    # return HttpResponse("Hello, world. You're at the polls index."+content)
+    print 'index'
+    print request.user
+    if request.user.is_authenticated():
+        return render_to_response('index.html', {'user': request.user})
+    else:
+        users = User.objects.all()
+        return render_to_response('login.html', {'users': users})
+
+def login(request):
+    u = request.GET.get('username')
+    p = request.GET.get('password')
+
+    print 'login'
+    print request
+
+    user = authenticate(username=u, password=p)
+    if user is not None:
+        auth_login(request, user)
+
+    return HttpResponse('/')
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponse('/')
