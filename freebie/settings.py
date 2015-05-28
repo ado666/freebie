@@ -7,6 +7,9 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+# IMAGES_DIR = '/Users/mystis/projects/freebie/static/img/companies'
+IMAGES_DIR = 'static/img/companies'
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -96,7 +99,7 @@ SESSION_FILE_PATH = "/tmp"
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
@@ -128,7 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'index',
     # 'users',
-    # 'fcompany',
+    'fcompany',
 )
 
 # A sample logging configuration. The only tangible logging

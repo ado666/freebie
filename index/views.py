@@ -10,15 +10,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from fcompany import models as fcmodel
 
 import json
 
 # Create your views here.
 def index(request):
-    print 'index'
-    print request.user
     if request.user.is_authenticated():
-        return render_to_response('index.html', {'user': request.user})
+        companies = fcmodel.Company.objects.all()
+        return render_to_response('index.html', {'user': request.user, 'companies': companies})
     else:
         users = User.objects.all()
         return render_to_response('login.html', {'users': users})
@@ -26,9 +26,6 @@ def index(request):
 def login(request):
     u = request.GET.get('username')
     p = request.GET.get('password')
-
-    print 'login'
-    print request
 
     user = authenticate(username=u, password=p)
     if user is not None:

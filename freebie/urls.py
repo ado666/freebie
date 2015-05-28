@@ -21,4 +21,6 @@ urlpatterns = patterns('',
     url(r'^$', views.index), # index / main or login
     url(r'login', views.login),
     url(r'logout', views.logout),
+
+    url(r'company/save', company_views.save),
 )
