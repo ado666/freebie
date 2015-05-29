@@ -42,13 +42,14 @@ $(document).ready(function(){
 			}
 		});
 	})
+
 	$('#createcompanymodal').on('show.bs.modal', function (event) {
 		var sender	= $(event.relatedTarget);
 		var name	= sender.data('name');
 		var desc	= sender.data('desc');
 		var icon	= sender.data('icon');
 		var id		= sender.data('id');
-		console.log('asd',id)
+		$(this).data('compid', id);
 		$('#comp_name').val(name)
 		$('#comp_desc').val(desc)
 		if (name){
@@ -60,17 +61,16 @@ $(document).ready(function(){
 			$('#save_company').attr('cid', null);
 		}
 		if (icon){
-			$('#preview').attr('src', 'img/companies/'+icon);
+			$('#preview').attr('src', 'img/companies/'+icon+'.png');
 		}else{
 			$('#preview').attr('src', 'img/icons/image_upload_icon.png');
 		}
-		return;
-	var button = $(event.relatedTarget) // Button that triggered the modal
-	var recipient = button.data('whatever') // Extract info from data-* attributes
-	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	var modal = $(this)
-	modal.find('.modal-title').text('New message to ' + recipient)
-	modal.find('.modal-body input').val(recipient)
 	})
+	$('#createoffermodal').on('show.bs.modal', function (event) {
+		var sender	= $(event.relatedTarget);
+		var compid	= $('#createcompanymodal').data('compid');
+
+		console.log(compid)
+	})
+
 })

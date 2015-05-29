@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'index',
     # 'users',
     'fcompany',
+    'foffer'
 )
 
 # A sample logging configuration. The only tangible logging

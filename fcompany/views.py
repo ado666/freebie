@@ -14,31 +14,24 @@ def save(request):
     name = request.POST.get('name')
     desc = request.POST.get('desc')
     cid  = request.POST.get('cid')
-    file = None
-    if request.FILES:
-        file = request.FILES['file']
-
-    path = settings.IMAGES_DIR + '/' + request.user.username + '/' + name + '.png'
 
     if cid:
         c = Company.objects.get(pk=cid)
     else:
         c = Company()
 
-    if c.icon != file:
-        need_save_image = True
-
     c.name = name
     c.desc = desc
-    if file:
-        c.icon = request.user.username + '/' + name + '.png'
-    else:
-        c.icon = '/' + 'default' + '.png'
-    c.save()
+    c.user = request.user
 
-    if need_save_image:
+    if request.FILES:
+        file = request.FILES['file']
+        path = settings.IMAGES_DIR + '/' + request.user.username + cid + '.png'
         fout = open(path,'w')
         fout.write(file.read())
         file.close()
+        c.icon = request.user.username+''+cid
+
+    c.save()
 
     return HttpResponse('/')

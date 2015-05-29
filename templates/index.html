@@ -37,42 +37,118 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <tr class="info">
-                        <th class="text-center" data-field="header" colspan="2">
+                        <th class="text-center" data-field="header" colspan="3">
                             COMPANIES  <span class="pointer glyphicon glyphicon-plus" aria-hidden="true" data-toggle="modal" data-icon=0 data-target="#createcompanymodal"></span>
                         </th>
                     </tr>
                 </thead>
                 {% for company in companies %}
-                    <tr id="company_{{ company.id }}" class="pointer" data-icon={{ company.icon }} data-id={{ company.id }} data-name={{ company.name }} data-desc={{ company.desc }} data-toggle="modal" data-target="#createcompanymodal">
-                        <td><image width="26px" height="26px" src="img/companies/{{ company.icon }}" /></td>
+                    <tr id="company_{{ company.id }}" class="pointer" data-id="{{ company.id }}" data-icon="{{ company.icon }}" data-name="{{ company.name }}" data-desc={{ company.desc }} data-toggle="modal" data-target="#createcompanymodal">
+                        {% if company.icon %}
+                            <td><image width="26px" height="26px" src="img/companies/{{ company.icon }}.png" /></td>
+                        {% else %}
+                            <td><image width="26px" height="26px" src="img/companies/default.png" /></td>
+                        {% endif %}
+                        <td>{{ company.id }}</td>
                         <td>{{ company.name }}</td>
                     </tr>
                 {% endfor %}
-{#                <tr>#}
-{#                    <td>Adidas</td>#}
-{#                    <td>ddasda f</td>#}
-{#                </tr>#}
-{#                <tr>#}
-{#                    <td>Adidas</td>#}
-{#                    <td>ddasda f</td>#}
-{#                </tr>#}
-{#                <tr>#}
-{#                    <td>Adidas</td>#}
-{#                    <td>ddasda f</td>#}
-{#                </tr>#}
              </table>
         </div>
         <div class=".text-center col-md-4">
-            <h4 class="text-center">Offers</h4>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr class="info">
+                        <th class="text-center" data-field="header" colspan="3">
+                            OFFERS  <span class="pointer glyphicon glyphicon-plus" aria-hidden="true" data-toggle="modal" data-icon=0 data-target="#createoffermodal"></span>
+                        </th>
+                    </tr>
+                </thead>
+                {% for offer in offers %}
+{#                    <tr id="company_{{ company.id }}" class="pointer" data-id="{{ company.id }}" data-icon="{{ company.icon }}" data-name="{{ company.name }}" data-desc={{ company.desc }} data-toggle="modal" data-target="#createcompanymodal">#}
+{#                        {% if company.icon %}#}
+{#                            <td><image width="26px" height="26px" src="img/companies/{{ company.icon }}.png" /></td>#}
+{#                        {% else %}#}
+{#                            <td><image width="26px" height="26px" src="img/companies/default.png" /></td>#}
+{#                        {% endif %}#}
+{#                        <td>{{ company.id }}</td>#}
+{#                        <td>{{ company.name }}</td>#}
+{#                    </tr>#}
+                {% endfor %}
+             </table>
         </div>
     </div>
 
     <div class="modal fade" id="createcompanymodal">
-    <div class="modal-dialog">
+    <div class="modal-dialog  modal-lg">
         <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">CREATE COMPANY</h4>
+                </div>
+                <div class="modal-body">
+        <form class="form" id="company_form">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <img width="100px" height="100px" id="preview" src="img/icons/image_upload_icon.png" alt="" />
+                    <input name="file" class="input" type="file" id="imgupload"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- The next div has a background color and its own paddings and should be aligned right-->
+                <!-- It is now in the right column but aligned left in that column -->
+
+                    <div class="form-group">
+                        <label for="comp_name">Name</label>
+                        <input name="name" class="form-control" id="comp_name" type="text"/>
+                    </div>
+                    <div class="form-group">
+                       <label for="comp_desc">Description</label>
+                       <textarea name="desc" class="form-control" id="comp_desc" rows="8"></textarea>
+                    </div>
+
+            </div>
+            <div class="col-md-4 relative" data-spy="scroll" data-target="#offer_table">
+                <table class="table table-hover header-fixed">
+                <thead>
+                    <tr class="info">
+                        <th class="text-center" data-field="header" colspan="2">
+                            OFFERS <span class="pointer glyphicon glyphicon-plus" aria-hidden="true" data-compid="" data-toggle="modal" data-icon=0 data-target="#createoffermodal"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pointer" data-toggle="modal" data-target="#createeefortmodal">
+                        <td>name</td>
+                        <td>desc</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+        </form>
+        <div class="row">
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-danger" id="delete_company">Delete</button>
+            </div>
+            <div class="col-md-offset-11">
+                <button type="submit" class="btn btn-success" id="save_company">Submit</button>
+            </div>
+        </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- ================ -->
+
+    <div class="modal fade" id="createoffermodal">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">CREATE OFFER</h4>
                 </div>
                 <div class="modal-body">
         <form class="form" id="company_form">
@@ -84,18 +160,6 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <!-- The next div has a background color and its own paddings and should be aligned right-->
-                <!-- It is now in the right column but aligned left in that column -->
-
-                    <div class="form-group">
-                        <label for="comp_name">Name</label>
-                        <input name="name" class="form-control" id="comp_name" type="text"/>
-                    </div>
-                    <div class="form-group">
-                       <label for="comp_desc">Description</label>
-                       <textarea name="desc" class="form-control" id="comp_desc" rows="3"></textarea>
-                    </div>
-
             </div>
         </div>
         </form>
@@ -104,22 +168,6 @@
                 <button type="submit" class="btn btn-default" id="save_company">Submit</button>
             </div>
         </div>
-
-{#                            <div class="container-fluid">#}
-{##}
-{#                                <img width="100px" height="100px" id="preview" src="#" alt="" />#}
-{#                                <input class="input" type="file" id="imgupload"/>#}
-{##}
-{#                        <form class="form">#}
-{#                            <div class="form-group">#}
-{#                                <label for="comp_name">Name</label>#}
-{#                                <input class="form-control" id="comp_name" type="text" />#}
-{#                            </div>#}
-{#                        </form>#}
-{#                                </div>#}
-{##}
-{#                </div>#}
-
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

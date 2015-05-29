@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 
 from index import views
 from fcompany import views as company_views
+from foffer import views as offer_views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -23,4 +24,7 @@ urlpatterns = patterns('',
     url(r'logout', views.logout),
 
     url(r'company/save', company_views.save),
+
+    url(r'offer/create', offer_views.create),
+    url(r'offer/save', offer_views.update),
 )
