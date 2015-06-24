@@ -1,0 +1,163 @@
+<div class="modal fade" id="createoffermodal" xmlns="http://www.w3.org/1999/html">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">CREATE OFFER</h4>
+                </div>
+                <div class="modal-body">
+        <form class="form" id="company_form">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <img width="100px" id="offer_icon" height="100px" id="preview" src="img/icons/image_upload_icon.png" alt="" />
+                    <input name="file" class="input" type="file" id="imgupload1"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="offer_name">Name</label>
+                    <input name="name" class="form-control" id="offer_name" type="text"/>
+                </div>
+                <div class="form-group">
+                    <label for="offer_desc">Description</label>
+                    <textarea name="desc" class="form-control" id="offer_desc" rows="8"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="offer_dist">Range</label>
+                    <select id="offer_dist" class="form-control">
+                        <option>100</option>
+                        <option>200</option>
+                        <option>300</option>
+                        <option>400</option>
+                        <option>500</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="offer_date_start">Start Date</label>
+                    <div class="input-group date">
+                        <input id="offer_date_start" type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="offer_date_end">End Date</label>
+                    <div class="input-group date">
+                        <input id="offer_date_end" type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="alert alert-info">
+                        Пн
+                        <input id="offer_mo" type="checkbox" value="">
+                    </label>
+                    <label class="alert alert-info">
+                        Вт
+                        <input id="offer_tu" type="checkbox" value="">
+                    </label>
+                    <label class="alert alert-info">
+                        Ср
+                        <input id="offer_we" type="checkbox" value="">
+                    </label>
+                    <label class="alert alert-info">
+                        Чт
+                        <input id="offer_th" type="checkbox" value="">
+                    </label>
+                    <label class="alert alert-info">
+                        Пт
+                        <input id="offer_fr" type="checkbox" value="">
+                    </label>
+                    <label class="alert alert-danger">
+                        Сб
+                        <input id="offer_sa" type="checkbox" value="">
+                    </label>
+                    <label class="alert alert-danger">
+                        Вс
+                        <input id="offer_su" type="checkbox" value="">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6">
+                        Время начала -
+                        <select id="offer_time_start" type="text">
+                            <option value="00">00:00</option>
+                            <option value="01">01:00</option>
+                            <option value="02">02:00</option>
+                            <option value="03">03:00</option>
+                            <option value="04">04:00</option>
+                            <option value="05">05:00</option>
+                            <option value="06">06:00</option>
+                            <option value="07">07:00</option>
+                            <option value="08">08:00</option>
+                            <option value="09">09:00</option>
+                            <option value="10">10:00</option>
+                            <option value="11">11:00</option>
+                            <option value="12">12:00</option>
+                            <option value="13">13:00</option>
+                            <option value="14">14:00</option>
+                            <option value="15">15:00</option>
+                            <option value="16">16:00</option>
+                            <option value="17">17:00</option>
+                            <option value="18">18:00</option>
+                            <option value="19">19:00</option>
+                            <option value="20">20:00</option>
+                            <option value="21">21:00</option>
+                            <option value="22">22:00</option>
+                            <option value="23">23:00</option>
+                            <option value="24">24:00</option>
+                        </select>
+                    </label>
+                    <label class="col-md-6">
+                        Время конца -
+                        <select id="offer_time_end" type="text">
+                            <option value="00">00:00</option>
+                            <option value="01">01:00</option>
+                            <option value="02">02:00</option>
+                            <option value="03">03:00</option>
+                            <option value="04">04:00</option>
+                            <option value="05">05:00</option>
+                            <option value="06">06:00</option>
+                            <option value="07">07:00</option>
+                            <option value="08">08:00</option>
+                            <option value="09">09:00</option>
+                            <option value="10">10:00</option>
+                            <option value="11">11:00</option>
+                            <option value="12">12:00</option>
+                            <option value="13">13:00</option>
+                            <option value="14">14:00</option>
+                            <option value="15">15:00</option>
+                            <option value="16">16:00</option>
+                            <option value="17">17:00</option>
+                            <option value="18">18:00</option>
+                            <option value="19">19:00</option>
+                            <option value="20">20:00</option>
+                            <option value="21">21:00</option>
+                            <option value="22">22:00</option>
+                            <option value="23">23:00</option>
+                            <option value="24">24:00</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-4" id="map-canvas-offer"></div>
+
+                <div class="form-group">
+                    <label for="offer_lat">Lat:</label>
+                    <span id="offer_lat">0</span>
+                </div>
+                <div class="form-group">
+                    <label for="offer_lng">Lng:</label>
+                    <span id="offer_lng">0</span>
+                </div>
+            </div>
+        </div>
+        </form>
+        <div class="row">
+            <div class="col-md-offset-5">
+                <button type="submit" class="btn btn-success" id="save_offer">Submit</button>
+            </div>
+        </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

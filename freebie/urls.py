@@ -23,8 +23,11 @@ urlpatterns = patterns('',
     url(r'login', views.login),
     url(r'logout', views.logout),
 
+    url(r'company/getall', company_views.getall),
+    url(r'company/get', company_views.get),
     url(r'company/save', company_views.save),
 
-    url(r'offer/create', offer_views.create),
-    url(r'offer/save', offer_views.update),
+    url(r'offer/save', offer_views.save),
+    url(r'offer/getbycompany', offer_views.getbycompany),
+    url(r'offer/get', offer_views.get),
 )

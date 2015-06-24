@@ -1,0 +1,61 @@
+    <div class="modal fade" id="createcompanymodal">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">CREATE COMPANY</h4>
+                </div>
+                <div class="modal-body">
+        <form class="form" id="company_form">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <img width="100px" height="100px" id="comp_icon" src="img/icons/image_upload_icon.png" alt="" />
+                    <input name="file" class="input" type="file" id="imgupload"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- The next div has a background color and its own paddings and should be aligned right-->
+                <!-- It is now in the right column but aligned left in that column -->
+
+                    <div class="form-group">
+                        <label for="comp_name">Name</label>
+                        <input name="name" class="form-control" id="comp_name" type="text"/>
+                    </div>
+                    <div class="form-group">
+                       <label for="comp_desc">Description</label>
+                       <textarea name="desc" class="form-control" id="comp_desc" rows="8"></textarea>
+                    </div>
+
+            </div>
+            <div class="col-md-4 relative" data-spy="scroll" data-target="#offer_table">
+                <table class="table table-hover header-fixed">
+                <thead>
+                    <tr class="info">
+                        <th class="text-center" data-field="header" colspan="2">
+{#                          OFFERS <span class="pointer glyphicon glyphicon-plus" aria-hidden="true" data-compid="" data-toggle="modal" data-icon=0 data-target="#createoffermodal"></span>#}
+                            OFFERS <span id="cretate-offer" class="pointer glyphicon glyphicon-plus edit-offer" ></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="company_offers">
+                </tbody>
+                </table>
+            </div>
+        </div>
+        </form>
+        <div class="row">
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-danger" id="delete_company">Delete</button>
+            </div>
+{#            <div class="col-md-offset-8 col-md-1">#}
+{#                <button type="submit" class="btn btn-success" id="save_company1">Save1</button>#}
+{#            </div>#}
+            <div class="col-md-offset-10 col-md-1">
+                <button type="submit" class="btn btn-success" id="save_company">Save</button>
+            </div>
+        </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

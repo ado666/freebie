@@ -8,7 +8,7 @@ ADMINS = (
 )
 
 # IMAGES_DIR = '/Users/mystis/projects/freebie/static/img/companies'
-IMAGES_DIR = 'static/img/companies'
+IMAGES_DIR = 'static/img'
 
 MANAGERS = ADMINS
 
@@ -20,6 +20,9 @@ DATABASES = {
         'PASSWORD': '31337',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'OPTIONS': {
+                    'charset': 'utf8',
+                    'use_unicode': True, },
     }
 }
 

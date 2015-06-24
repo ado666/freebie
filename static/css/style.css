@@ -2,8 +2,14 @@
 @font-face { font-family: Space; src: url('/fonts/space.ttf'); }
 @font-face { font-family: Futura; src: url('/fonts/futura.ttf'); }
 
+.datepicker{z-index:1151 !important;}
+
 .header-fixed {
     width: 100%
+}
+
+.modal-lg {
+    width: 1050px;
 }
 
 .header-fixed > thead,
@@ -41,7 +47,13 @@
     cursor: pointer;
 }
 
-#map-canvas {
+#map-canvas-main {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#map-canvas-offer {
     width: 300px;
     height: 300px;
     border: 1px solid black;

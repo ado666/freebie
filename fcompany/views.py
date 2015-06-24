@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.conf import settings
 from fcompany.models import Company
+import json
 # Create your views here.
 
 def save(request):
@@ -23,15 +24,34 @@ def save(request):
     c.name = name
     c.desc = desc
     c.user = request.user
-
+    c.save()
     if request.FILES:
         file = request.FILES['file']
-        path = settings.IMAGES_DIR + '/' + request.user.username + cid + '.png'
+        path = settings.IMAGES_DIR + '/companies/' + request.user.username + str(c.id) + '.png'
         fout = open(path,'w')
         fout.write(file.read())
         file.close()
-        c.icon = request.user.username+''+cid
+        c.icon = request.user.username+''+str(c.id)
 
     c.save()
 
     return HttpResponse('/')
+
+def get(request):
+    if not request.user.is_authenticated():
+        users = User.objects.all()
+        return render_to_response('login.html', {'users': users})
+
+    id  = request.POST.get('id')
+    c   = Company.objects.get(pk=id)
+
+    return HttpResponse(json.dumps(c.json()), content_type = "application/json")
+
+
+def getall(request):
+    if not request.user.is_authenticated():
+        users = User.objects.all()
+        return render_to_response('login.html', {'users': users})
+
+    data = [c.json() for c in Company.objects.all()]
+    return HttpResponse(json.dumps(data), content_type = "application/json")
