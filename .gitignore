@@ -2,3 +2,5 @@
 *.pyc
 venv
 ./logs
+./foffer/migrations
+./fcompany/migration
