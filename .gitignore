@@ -4,3 +4,4 @@ venv
 ./logs
 ./foffer/migrations
 ./fcompany/migration
+./freebie/settings_local.py
