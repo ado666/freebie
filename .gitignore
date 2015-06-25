@@ -1,7 +1,8 @@
 .idea
 *.pyc
 venv
-./logs
+nginx.conf
+logs
 ./foffer/migrations
 ./fcompany/migration
 ./freebie/settings_local.py
