@@ -166,7 +166,7 @@ fb.openoffer	= function(id, clear){
 				if (data.icon){
 					$('#offer_icon').attr('src', 'img/offers/'+data.icon+'.png');
 				}else{
-					$('#offer_icon').attr('src', 'img/icons/blank.png');
+					$('#offer_icon').attr('src', 'img/blank.png');
 				}
 				$('#createoffermodal').modal('show');
 				if (data.lat && data.lng){
@@ -208,7 +208,7 @@ fb.openoffer	= function(id, clear){
 			$('#offer_lat').text('');
 			$('#offer_lng').text('');
 
-			$('#offer_icon').attr('src', 'img/icons/blank.png');
+			$('#offer_icon').attr('src', 'img/blank.png');
 
 			if (gmap.offerPin)	gmap.removePin('offer', gmap.offerPin)
 		}
