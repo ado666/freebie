@@ -3,6 +3,7 @@
 venv
 nginx.conf
 logs
+static/img
 ./foffer/migrations
 ./fcompany/migration
 ./freebie/settings_local.py
