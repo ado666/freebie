@@ -64,7 +64,7 @@ fb.opencompany	= function(id, clear){
 				if (data.icon){
 					$('#comp_icon').attr('src', 'img/companies/'+data.icon+'.png');
 				}else{
-					$('#comp_icon').attr('src', 'img/icons/image_upload_icon.png');
+					$('#comp_icon').attr('src', 'img/icons/blank.png');
 				}
 
 				$('#createcompanymodal').modal('show');
@@ -76,7 +76,7 @@ fb.opencompany	= function(id, clear){
 			$('#save_company').attr('cid', null);
 			$('#comp_name').val('');
 			$('#comp_desc').val('');
-			$('#comp_icon').attr('src', 'img/icons/image_upload_icon.png');
+			$('#comp_icon').attr('src', 'img/blank.png');
 			var offers	= $('#company_offers');
 			offers.empty()
 		}
