@@ -8,3 +8,4 @@ static/img
 ./fcompany/migration
 ./freebie/settings_local.py
 freebie/settings_local.py
+static/img/offers/

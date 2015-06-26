@@ -45,6 +45,8 @@ def get(request):
     id  = request.POST.get('id')
     c   = Company.objects.get(pk=id)
 
+    c.is_my = c.user == request.user
+
     return HttpResponse(json.dumps(c.json()), content_type = "application/json")
 
 

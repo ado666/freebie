@@ -21,6 +21,7 @@ $(document).ready(function(){
 			setTimeout(function(){
 				gmap.init('offer');
 				google.maps.event.addListener(gmap['map-offer'], 'click', function(event){
+					if (!window.current_offer_is_my)	return;
 					var pos	= event.latLng;
 					var x	= pos.A;
 					var y	= pos.F;
@@ -162,6 +163,18 @@ fb.openoffer	= function(id, clear){
 				$('#offer_sa').prop('checked', data.sa);
 				$('#offer_su').prop('checked', data.su);
 
+				if (data.is_my){
+					window.current_offer_is_my	= true;
+					$('#offer_fields').prop('disabled', false);
+					$('#imgupload1').prop('disabled', false);
+					$('#pac-input').show();
+				}else{
+					window.current_offer_is_my	= false;
+					$('#offer_fields').prop('disabled', true);
+					$('#imgupload1').prop('disabled', true);
+					$('#pac-input').hide();
+				}
+
 				if (data.icon){
 					$('#offer_icon').attr('src', 'img/offers/'+data.icon+'.png');
 				}else{
@@ -183,6 +196,10 @@ fb.openoffer	= function(id, clear){
 		});
 	}else{
 		if (clear){
+			window.current_offer_is_my	= true;
+			$('#offer_fields').prop('disabled', false);
+			$('#imgupload1').prop('disabled', false);
+			$('#pac-input').show();
 			$('#save_offer').attr('oid', null);
 			$('#offer_name').val('');
 			$('#offer_desc').val('');

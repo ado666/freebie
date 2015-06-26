@@ -10,11 +10,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from fcompany.models import Company
 
 # Create your views here.
 def index(request):
     if request.user.is_authenticated():
-        companies = request.user.companies.all()
+        companies = Company.objects.all()
         return render_to_response('index.html', {'user': request.user, 'companies': companies})
     else:
         users = User.objects.all()

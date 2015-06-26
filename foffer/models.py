@@ -28,6 +28,8 @@ class Offer(models.Model):
     lat         = models.FloatField(default=None)
     lng         = models.FloatField(default=None)
 
+    is_my       = False
+
     user = models.ForeignKey(User, related_name="all_offers")
     company = models.ForeignKey(Company, related_name="offers")
 
@@ -55,5 +57,7 @@ class Offer(models.Model):
             'su'   : self.su,
 
             'lat'  : self.lat,
-            'lng'  : self.lng
+            'lng'  : self.lng,
+
+            'is_my': self.is_my,
         }

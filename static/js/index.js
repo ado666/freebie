@@ -36,13 +36,6 @@ $(document).ready(function(){
 			$('#preview').attr('src', 'img/icons/image_upload_icon.png');
 		}
 	})
-//	$('#createoffermodal').on('show.bs.modal', function (event) {
-//		var compid	= $('#createcompanymodal').data('compid');
-//
-//		if (!gmap['map-offer'])	gmap.init('offer');
-//
-//
-//	})
 
 
 	$('.edit-company').click(function(){
