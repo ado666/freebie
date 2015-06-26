@@ -48,7 +48,6 @@ fb.opencompany	= function(id, clear){
 			contentType: false,
 			processData: false,
 			success: function(data){
-				console.log(data)
 				$('#save_company').attr('cid', data.id);
 				$('#cretate-offer').attr('cid', data.id);
 				$('#comp_name').val(data.name);
