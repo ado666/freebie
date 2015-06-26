@@ -15,6 +15,18 @@ gmap.init	=  function (map) {
 		zoom: 12
 	}
 	gmap['map-'+map] = new google.maps.Map(mapCanvas, mapOptions);
+	if (map == 'main'){
+			$.ajax({
+		url: "/offer/all",
+		method: "GET",
+		success: function(data){
+			for (var i = 0, l = data.length; i < l; i++){
+				var offer	= data[i];
+				gmap.addPin('main', [offer.lat, offer.lng], offer.name, offer.icon)
+			}
+		}
+	});
+	}
 	if (map == 'offer'){
 		map = gmap['map-offer'];
 		infowindow = new google.maps.InfoWindow();
@@ -75,7 +87,10 @@ gmap.init	=  function (map) {
 gmap.iconbase	= 'https://maps.google.com/mapfiles/kml/shapes/';
 
 gmap.getIcon	= function(type){
+	if (type)	return 'img/pins/'+type+'.png';
+	return;
 	var icon	= gmap.iconbase;
+	icon		= '/img/offers/';
 
 	switch (type) {
 		case 'food':

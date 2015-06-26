@@ -7,6 +7,8 @@ from foffer.models import Offer
 from fcompany.models import Company
 import datetime
 import json
+from PIL import Image
+
 
 # Create your views here.
 def save(request):
@@ -68,14 +70,27 @@ def save(request):
     if request.FILES:
         file = request.FILES['file']
         path = settings.IMAGES_DIR + '/offers/' + request.user.username + str(o.id) + '.png'
+        thumb_path = settings.IMAGES_DIR + '/pins/' + request.user.username + str(o.id) + '.png'
         fout = open(path,'w')
         fout.write(file.read())
+        im = Image.open(file)
+        im.thumbnail((100, 100), Image.ANTIALIAS)
+        im.save(thumb_path, "PNG")
         file.close()
         o.icon = request.user.username+''+str(o.id)
 
     o.save()
 
     return HttpResponse(json.dumps({}), content_type = "application/json")
+
+def all(request):
+    if not request.user.is_authenticated():
+        users = User.objects.all()
+        return render_to_response('login.html', {'users': users})
+
+    offers  = Offer.objects
+    data = [o.json() for o in offers.all()]
+    return HttpResponse(json.dumps(data), content_type = "application/json")
 
 def getbycompany(request):
     cid = request.POST.get('cid')

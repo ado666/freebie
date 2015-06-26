@@ -9,7 +9,6 @@ $(document).ready(function(){
 		});
 	})
 
-
 	$('#createcompanymodal').on('show.bs.modal', function (event) {
 		return;
 		var sender	= $(event.relatedTarget);
