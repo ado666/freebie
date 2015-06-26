@@ -36,7 +36,6 @@ $(document).ready(function(){
 	})
 
 	$('#createoffermodal').on('hidden.bs.modal', function (event) {
-		console.log('hide o')
 		fb.opencompany(fb.current_company, false)
 	})
 

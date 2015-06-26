@@ -42,8 +42,6 @@ $(document).ready(function(){
 //		if (!gmap['map-offer'])	gmap.init('offer');
 //
 //
-//
-//		console.log(compid)
 //	})
 
 
