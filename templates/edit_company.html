@@ -11,13 +11,13 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <img width="100px" height="100px" id="comp_icon" alt="" />
-                    <input name="file" class="input" type="file" id="imgupload"/>
+                    <input name="file" class="input" type="file" id="imgupload" src="/img/blank.png"/>
                 </div>
             </div>
             <div class="col-md-6">
                 <!-- The next div has a background color and its own paddings and should be aligned right-->
                 <!-- It is now in the right column but aligned left in that column -->
-
+                <fieldset id="company_fields">
                     <div class="form-group">
                         <label for="comp_name">Name</label>
                         <input name="name" class="form-control" id="comp_name" type="text"/>
@@ -26,7 +26,7 @@
                        <label for="comp_desc">Description</label>
                        <textarea name="desc" class="form-control" id="comp_desc" rows="8"></textarea>
                     </div>
-
+                </fieldset>
             </div>
             <div class="col-md-4 relative" data-spy="scroll" data-target="#offer_table">
                 <table class="table table-hover header-fixed">

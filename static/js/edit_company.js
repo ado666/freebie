@@ -53,6 +53,17 @@ fb.opencompany	= function(id, clear){
 				$('#comp_name').val(data.name);
 				$('#comp_desc').val(data.desc);
 				$('#comp_icon').val(data.icon);
+
+				if (data.is_my){
+					$('#company_fields').prop('disabled', false);
+					$('#imgupload').prop('disabled', false);
+					$('#cretate-offer').show();
+				}else{
+					$('#company_fields').prop('disabled', true);
+					$('#imgupload').prop('disabled', true);
+					$('#cretate-offer').hide();
+				}
+
 				var offers	= $('#company_offers');
 				offers.empty()
 				for (var i = 0, l = data.offers.length; i < l; i++){
@@ -63,7 +74,7 @@ fb.opencompany	= function(id, clear){
 				if (data.icon){
 					$('#comp_icon').attr('src', 'img/companies/'+data.icon+'.png');
 				}else{
-					$('#comp_icon').attr('src', 'img/icons/blank.png');
+					$('#comp_icon').attr('src', 'img/blank.png');
 				}
 
 				$('#createcompanymodal').modal('show');
@@ -78,6 +89,9 @@ fb.opencompany	= function(id, clear){
 			$('#comp_icon').attr('src', 'img/blank.png');
 			var offers	= $('#company_offers');
 			offers.empty()
+			$('#company_fields').prop('disabled', false);
+			$('#imgupload').prop('disabled', false);
+			$('#cretate-offer').show();
 		}
 		$('#createcompanymodal').modal('show');
 	}

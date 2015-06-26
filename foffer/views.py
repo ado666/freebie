@@ -94,4 +94,6 @@ def get(request):
 
     offer   = Offer.objects.get(pk=oid)
 
+    offer.is_my = offer.company.user == request.user
+
     return HttpResponse(json.dumps(offer.json()), content_type = "application/json")
