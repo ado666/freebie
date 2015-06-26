@@ -22,7 +22,7 @@ gmap.init	=  function (map) {
 		success: function(data){
 			for (var i = 0, l = data.length; i < l; i++){
 				var offer	= data[i];
-				gmap.addPin('main', [offer.lat, offer.lng], offer.name, offer.icon)
+				gmap.addPin('main', [offer.lat, offer.lng], offer.name, offer.icon, offer.id)
 			}
 		}
 	});
@@ -104,7 +104,7 @@ gmap.getIcon	= function(type){
 	return icon;
 }
 
-gmap.addPin = function(map, cords, title, icon){
+gmap.addPin = function(map, cords, title, icon, offer_id){
 	var icon	= gmap.getIcon(icon);
 	var point	= new google.maps.LatLng(cords[0], cords[1]);
 
@@ -114,6 +114,12 @@ gmap.addPin = function(map, cords, title, icon){
 		map: gmap['map-'+map],
 		title: title
 	});
+
+	if (map == 'main'){
+		google.maps.event.addListener(marker, 'click', function() {
+			fb.openoffer(offer_id);
+		});
+	}
 
 	var id	= ++gmap.seq;
 	gmap.markers[map+'-'+id]	= marker;

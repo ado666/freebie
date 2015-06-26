@@ -37,7 +37,7 @@ $(document).ready(function(){
 	})
 
 	$('#createoffermodal').on('hidden.bs.modal', function (event) {
-		fb.opencompany(fb.current_company, false)
+		if (fb.current_company)	fb.opencompany(fb.current_company, false)
 	})
 
 	$('#save_offer').click(function(){
