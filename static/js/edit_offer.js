@@ -145,6 +145,7 @@ fb.openoffer	= function(id, clear){
 				$('#offer_name').val(data.name);
 				$('#offer_desc').val(data.desc);
 				$('#offer_icon').val(data.icon);
+				$('#offer_dist').val(data.dist);
 
 				$('#offer_date_start').datepicker('setValue', data.sdate);
 				$('#offer_date_end').datepicker('setValue', data.edate);
