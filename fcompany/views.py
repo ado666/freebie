@@ -15,6 +15,7 @@ def save(request):
     name = request.POST.get('name')
     desc = request.POST.get('desc')
     cid  = request.POST.get('cid')
+    url  = request.POST.get('img_url')
 
     if cid:
         c = Company.objects.get(pk=cid)
@@ -22,8 +23,12 @@ def save(request):
         c = Company()
         c.user = request.user
 
+    if url == 'img/blank.png':
+        c.icon = ''
+
     c.name = name
     c.desc = desc
+
     c.save()
     if request.FILES:
         file = request.FILES['file']
@@ -32,8 +37,6 @@ def save(request):
         fout.write(file.read())
         file.close()
         c.icon = request.user.username+''+str(c.id)
-    else:
-        c.icon = ''
 
     c.save()
 

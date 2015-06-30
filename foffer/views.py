@@ -28,6 +28,8 @@ def save(request):
     sa      = int(request.POST.get('sa'))
     su      = int(request.POST.get('su'))
 
+    url     = request.POST.get('img_url')
+
     stime   = request.POST.get('stime') + ':00'
     etime   = request.POST.get('etime') + ':00'
 
@@ -64,6 +66,9 @@ def save(request):
 
     o.lat   = lat
     o.lng   = lng
+
+    if url == 'img/blank.png':
+        o.icon = ''
 
     o.save()
 

@@ -17,6 +17,7 @@ $(document).ready(function(){
 		var fd		= new FormData();
 		fd.append('name', name);
 		fd.append('desc', desc);
+		fd.append('img_url', $('#comp_icon').attr('src'));
 		if (img) fd.append('file', img);
 		if (cid) fd.append('cid', cid);
 

@@ -105,6 +105,9 @@ $(document).ready(function(){
 		fd.append('dist', dist);
 		fd.append('sdate', sdate);
 		fd.append('edate', edate);
+
+		fd.append('img_url', $('#offer_icon').attr('src'));
+
 		if (img) fd.append('file', img);
 
 		fd.append('mo', mo ? 1 : 0);
