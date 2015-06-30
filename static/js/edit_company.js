@@ -33,6 +33,10 @@ $(document).ready(function(){
 			}
 		});
 	})
+	$('#delete-company-image').click(function(e){
+		$('#comp_icon').attr('src', 'img/blank.png');
+		$('#imgupload')[0].files = [];
+	})
 })
 
 fb.opencompany	= function(id, clear){

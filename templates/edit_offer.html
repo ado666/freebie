@@ -11,7 +11,7 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <img width="100px" id="offer_icon" height="100px" id="preview" alt="" />
-                    <input name="file" class="input" type="file" id="imgupload1"/>
+                    <div><input style="float: left" name="file" class="input" type="file" id="imgupload1" src="/img/blank.png"/><span id="delete-offer-image" class="pointer glyphicon glyphicon-trash" ></span></div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -160,11 +160,19 @@
             </div>
         </div>
         </form>
-        <div class="row">
-            <div class="col-md-offset-5">
-                <button type="submit" class="btn btn-success" id="save_offer">Submit</button>
+                                <div class="row">
+            <div class="col-md-1">
+                <button class="btn btn-danger" id="delete_offer">Delete</button>
+            </div>
+            <div class="col-md-offset-10 col-md-1">
+                <button class="btn btn-success" id="save_offer">Save</button>
             </div>
         </div>
+{#        <div class="row">#}
+{#            <div class="col-md-offset-5">#}
+{#                <button type="submit" class="btn btn-success" id="save_offer">Submit</button>#}
+{#            </div>#}
+{#        </div>#}
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

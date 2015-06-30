@@ -41,10 +41,10 @@ def save(request):
         o = Offer.objects.get(pk=oid)
     else:
         o = Offer()
+        o.user     = request.user
 
     company = Company.objects.get(pk=cid)
 
-    o.user     = request.user
     o.company  = company
     o.name  = name
     o.desc  = desc
@@ -78,6 +78,8 @@ def save(request):
         im.save(thumb_path, "PNG")
         file.close()
         o.icon = request.user.username+''+str(o.id)
+    else:
+        o.icon = ''
 
     o.save()
 
@@ -112,3 +114,15 @@ def get(request):
     offer.is_my = offer.company.user == request.user
 
     return HttpResponse(json.dumps(offer.json()), content_type = "application/json")
+
+def delete(request):
+    oid = request.POST.get('oid')
+
+    if (not oid):
+        return
+
+    o = Offer.objects.get(pk=oid)
+    o.delete()
+
+    return HttpResponse('ok')
+

@@ -36,6 +36,33 @@ $(document).ready(function(){
 		}
 	})
 
+	$('#delete-offer-image').click(function(e){
+		$('#offer_icon').attr('src', 'img/blank.png');
+		$('#imgupload1')[0].files = [];
+	})
+
+	$('#delete_offer').click(function(){
+		if (!fb.current_offer)	return;
+
+		var fd	= new FormData();
+		fd.append('oid', fb.current_offer);
+
+		$.ajax({
+			url: "/offer/delete",
+			method: "POST",
+			data: fd,
+			//Options to tell jQuery not to process data or worry about content-type.
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(msg){
+				fb.closeOffer();
+				fb.closeCompany();
+				fb.opencompany(fb.current_company)
+			}
+		});
+	})
+
 	$('#createoffermodal').on('hidden.bs.modal', function (event) {
 		if (fb.current_company)	fb.opencompany(fb.current_company, false)
 	})
@@ -130,6 +157,7 @@ $(document).ready(function(){
 
 
 fb.openoffer	= function(id, clear){
+	fb.current_offer	= id;
 	if (id){
 		var fd		= new FormData();
 		fd.append('oid', id);
@@ -231,4 +259,8 @@ fb.openoffer	= function(id, clear){
 		}
 		$('#createoffermodal').modal('show');
 	}
+}
+
+fb.closeOffer	= function(){
+	$('#createoffermodal').modal('hide');
 }

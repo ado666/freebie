@@ -20,10 +20,10 @@ def save(request):
         c = Company.objects.get(pk=cid)
     else:
         c = Company()
+        c.user = request.user
 
     c.name = name
     c.desc = desc
-    c.user = request.user
     c.save()
     if request.FILES:
         file = request.FILES['file']
@@ -32,6 +32,8 @@ def save(request):
         fout.write(file.read())
         file.close()
         c.icon = request.user.username+''+str(c.id)
+    else:
+        c.icon = ''
 
     c.save()
 
