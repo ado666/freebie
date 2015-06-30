@@ -33,7 +33,7 @@ gmap.init	=  function (map) {
 
 		var input = (document.getElementById('pac-input'));
 
-		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+//		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 		var autocomplete = new google.maps.places.Autocomplete(input);
 		autocomplete.bindTo('bounds', gmap['map-offer']);
 
@@ -62,13 +62,14 @@ gmap.init	=  function (map) {
 			var y = place.geometry.location.F;
 
 			if (gmap.offerPin)	gmap.removePin('offer', gmap.offerPin)
-			gmap.offerPin	= gmap.addPin('offer', [x,y])
+			gmap.offerPin	= gmap.addPin('offer', [x,y])[0]
+			var marker	= gmap.addPin('offer', [x,y])[1]
 
 			$('#offer_lat').text(x);
 			$('#offer_lng').text(y);
 
-			gmap.offerPin.setPosition(place.geometry.location);
-			gmap.offerPin.setVisible(true);
+			marker.setPosition(place.geometry.location);
+			marker.offerPin.setVisible(true);
 
 			var address = '';
 			if (place.address_components) {
@@ -124,7 +125,7 @@ gmap.addPin = function(map, cords, title, icon, offer_id){
 	var id	= ++gmap.seq;
 	gmap.markers[map+'-'+id]	= marker;
 
-	return id;
+	return [id, marker];
 };
 gmap.removePin = function(map, id){
 	gmap.markers[map+'-'+id].setMap(null);

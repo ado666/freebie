@@ -26,7 +26,7 @@ $(document).ready(function(){
 					var x	= pos.A;
 					var y	= pos.F;
 					if (gmap.offerPin)	gmap.removePin('offer', gmap.offerPin)
-					gmap.offerPin	= gmap.addPin('offer', [x,y])
+					gmap.offerPin	= gmap.addPin('offer', [x,y])[0]
 
 					$('#offer_lat').text(x);
 					$('#offer_lng').text(y);
@@ -187,7 +187,7 @@ fb.openoffer	= function(id, clear){
 					var y = data.lng;
 					setTimeout(function(){
 						if (gmap.offerPin)	gmap.removePin('offer', gmap.offerPin)
-						gmap.offerPin	= gmap.addPin('offer', [x,y])
+						gmap.offerPin	= gmap.addPin('offer', [x,y])[0]
 					},1000)
 
 					$('#offer_lat').text(x);
