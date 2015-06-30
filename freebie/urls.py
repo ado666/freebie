@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'company/getall', company_views.getall),
     url(r'company/get', company_views.get),
     url(r'company/save', company_views.save),
+    url(r'company/delete', company_views.delete),
 
     url(r'offer/all', offer_views.all),
     url(r'offer/save', offer_views.save),

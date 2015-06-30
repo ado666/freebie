@@ -59,3 +59,14 @@ def getall(request):
 
     data = [c.json() for c in Company.objects.all()]
     return HttpResponse(json.dumps(data), content_type = "application/json")
+
+def delete(request):
+    cid = request.POST.get('cid')
+
+    if (not cid):
+        return
+
+    c = Company.objects.get(pk=cid)
+    c.delete()
+
+    return HttpResponse('/')

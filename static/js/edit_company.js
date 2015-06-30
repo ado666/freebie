@@ -37,6 +37,29 @@ $(document).ready(function(){
 		$('#comp_icon').attr('src', 'img/blank.png');
 		$('#imgupload')[0].files = [];
 	})
+
+	$('#delete_company').click(function(){
+		if (!fb.current_company)	return;
+
+		var r = confirm("При удалении компании будут удалены ВСЕ ее акции. Удалить?");
+		if(!r)	return;
+
+		var fd	= new FormData();
+		fd.append('cid', fb.current_company);
+
+		$.ajax({
+			url: "/company/delete",
+			method: "POST",
+			data: fd,
+			//Options to tell jQuery not to process data or worry about content-type.
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(msg){
+				window.location = msg;
+			}
+		});
+	})
 })
 
 fb.opencompany	= function(id, clear){
@@ -61,11 +84,19 @@ fb.opencompany	= function(id, clear){
 				if (data.is_my){
 					$('#company_fields').prop('disabled', false);
 					$('#imgupload').prop('disabled', false);
-					$('#cretate-offer').show();
+					$('.my-controls').show()
+//					$('#cretate-offer').show();
+//					$('#delete-company-image').show();
+//					$('#delete-company').show();
+//					$('#save-company').show();
 				}else{
 					$('#company_fields').prop('disabled', true);
 					$('#imgupload').prop('disabled', true);
-					$('#cretate-offer').hide();
+					$('.my-controls').hide()
+//					$('#cretate-offer').hide();
+//					$('#delete-company-image').hide();
+//					$('#delete-company').hide();
+//					$('#save-company').hide();
 				}
 
 				var offers	= $('#company_offers');

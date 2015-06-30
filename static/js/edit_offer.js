@@ -196,12 +196,14 @@ fb.openoffer	= function(id, clear){
 					window.current_offer_is_my	= true;
 					$('#offer_fields').prop('disabled', false);
 					$('#imgupload1').prop('disabled', false);
-					$('#pac-input').show();
+//					$('#pac-input').show();
+					$('.my-controls').show();
 				}else{
 					window.current_offer_is_my	= false;
 					$('#offer_fields').prop('disabled', true);
 					$('#imgupload1').prop('disabled', true);
-					$('#pac-input').hide();
+//					$('#pac-input').hide();
+					$('.my-controls').hide();
 				}
 
 				if (data.icon){
