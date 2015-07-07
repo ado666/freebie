@@ -119,6 +119,7 @@ fb.opencompany	= function(id, clear){
 	}else{
 		fb.current_company	= null;
 		if (clear){
+			$('.my-controls').show()
 			$('#save_company').attr('cid', null);
 			$('#comp_name').val('');
 			$('#comp_desc').val('');
