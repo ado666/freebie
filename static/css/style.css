@@ -74,7 +74,7 @@
     cursor: pointer;
 }
 
-#companies_list{
+.companies_list{
     max-height: 600px;
     overflow-y: scroll;
 }
