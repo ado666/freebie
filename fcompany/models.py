@@ -18,5 +18,6 @@ class Company(models.Model):
             'desc': self.desc,
             'icon': self.icon,
             'offers': [o.json() for o in self.offers.all()],
+            'addresses': [a.json() for a in self.addresses.all()],
             'is_my': self.is_my,
         }

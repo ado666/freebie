@@ -120,6 +120,9 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+SOUTH_DATABASE_ADAPTERS = {
+    'default': 'south.db.mysql'
+}
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -135,7 +138,8 @@ INSTALLED_APPS = (
     'index',
     # 'users',
     'fcompany',
-    'foffer'
+    'foffer',
+    'faddress',
 )
 
 # A sample logging configuration. The only tangible logging

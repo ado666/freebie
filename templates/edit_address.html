@@ -1,0 +1,51 @@
+    <div class="modal fade" id="createaddressmodal">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">CREATE ADDRESS</h4>
+                </div>
+                <div class="modal-body">
+        <form class="form" id="company_form">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- The next div has a background color and its own paddings and should be aligned right-->
+                <!-- It is now in the right column but aligned left in that column -->
+                <fieldset id="company_fields">
+                    <div class="form-group">
+                        <label for="comp_name">Name</label>
+                        <input name="name" class="form-control" id="address_name" type="text"/>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <input id="pac-input-address" class="controls my-controls form-controll" type="text" placeholder="Enter a location">
+                <div class="col-md-4" id="map-canvas-address"></div>
+                <div class="form-group">
+                    <label for="address_lat">Lat:</label>
+                    <span id="address_lat">0</span>
+                </div>
+                <div class="form-group">
+                    <label for="address_lng">Lng:</label>
+                    <span id="address_lng">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+        </form>
+        <div class="row">
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-danger my-controls" id="delete_address">Delete</button>
+            </div>
+{#            <div class="col-md-offset-8 col-md-1">#}
+{#                <button type="submit" class="btn btn-success" id="save_company1">Save1</button>#}
+{#            </div>#}
+            <div class="col-md-offset-10 col-md-1">
+                <button type="submit" class="btn btn-success my-controls" id="save_address">Save</button>
+            </div>
+        </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

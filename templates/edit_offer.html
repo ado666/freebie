@@ -145,17 +145,21 @@
                 </div>
                 </fieldset>
             </div>
+{#            <div class="col-md-4" data-spy="scroll" data-target="addresses-list" >#}
             <div class="col-md-4">
-                <input id="pac-input" class="controls my-controls" type="text" placeholder="Enter a location">
+{#                <input id="pac-input" class="controls my-controls" type="text" placeholder="Enter a location">#}
                 <div class="col-md-4" id="map-canvas-offer"></div>
 
                 <div class="form-group">
                     <label for="offer_lat">Lat:</label>
                     <span id="offer_lat">0</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" data-spy="scroll">
                     <label for="offer_lng">Lng:</label>
                     <span id="offer_lng">0</span>
+                </div>
+                <div class="form-group" id="addresses-list">
+
                 </div>
             </div>
         </div>

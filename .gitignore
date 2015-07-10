@@ -6,6 +6,7 @@ logs
 static/img
 ./foffer/migrations
 ./fcompany/migration
+./faddress/migration
 ./freebie/settings_local.py
 freebie/settings_local.py
 static/img/offers/

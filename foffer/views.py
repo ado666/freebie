@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from foffer.models import Offer
 from fcompany.models import Company
+from faddress.models import Address
 import datetime
 import json
 from PIL import Image
@@ -64,8 +65,8 @@ def save(request):
     o.time_start    = stime
     o.time_end      = etime
 
-    o.lat   = lat
-    o.lng   = lng
+    # o.lat   = lat
+    # o.lng   = lng
 
     if url == 'img/blank.png':
         o.icon = ''
@@ -85,6 +86,16 @@ def save(request):
         o.icon = request.user.username+''+str(o.id)
     else:
         o.icon = ''
+
+    for address in o.addresses.all():
+        o.addresses.remove(address)
+
+    addresses = request.POST.get('addresses').split(',')
+    for address in addresses:
+        if not address:
+            continue
+        a = Address.objects.get(pk=int(address))
+        o.addresses.add(a)
 
     o.save()
 
@@ -117,6 +128,7 @@ def get(request):
     offer   = Offer.objects.get(pk=oid)
 
     offer.is_my = offer.company.user == request.user
+    offer.all_addresses = offer.company.addresses
 
     return HttpResponse(json.dumps(offer.json()), content_type = "application/json")
 

@@ -106,6 +106,12 @@ fb.opencompany	= function(id, clear){
 					var str	= '<tr class="pointer" onclick="fb.offerClick('+data.offers[i].id+')" offer_id='+data.offers[i].id+'><td>'+data.offers[i].id+'</td><td>'+data.offers[i].name+'</td></tr>';
 					offers.append($(str));
 				}
+				var addresses	= $('#company_addresses');
+				addresses.empty()
+				for (var i = 0, l = data.addresses.length; i < l; i++){
+					var str	= '<tr class="pointer" onclick="fb.addressClick('+data.addresses[i].id+')" address_id='+data.addresses[i].id+'><td>'+data.addresses[i].id+'</td><td>'+data.addresses[i].name+'</td></tr>';
+					addresses.append($(str));
+				}
 
 				if (data.icon){
 					$('#comp_icon').attr('src', 'img/companies/'+data.icon+'.png');

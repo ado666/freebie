@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from fcompany.models import Company
+from faddress.models import Address
 from django.conf import settings
+import json
 
 # Create your models here.
 class Offer(models.Model):
@@ -33,7 +35,15 @@ class Offer(models.Model):
     user = models.ForeignKey(User, related_name="all_offers")
     company = models.ForeignKey(Company, related_name="offers")
 
+    addresses = models.ManyToManyField(Address)
+
     def json(self):
+        aa  = hasattr(self, "all_addresses")
+        if not aa:
+            aa = []
+        else:
+            aa = [a.json() for a in self.all_addresses.all()]
+
         return {
             'id': self.id,
             'name': self.name,
@@ -60,4 +70,6 @@ class Offer(models.Model):
             'lng'  : self.lng,
 
             'is_my': self.is_my,
+            'all_addresses': aa,
+            'addresses': [a.json() for a in self.addresses.all()],
         }

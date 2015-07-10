@@ -41,6 +41,10 @@ $(document).ready(function(){
 		var id	= id || $(this).attr('comp_id');
 
 		fb.opencompany(id, true);
+	});
+
+	$('.edit-address').click(function(){
+		fb.openaddress(null, true);
 	})
 
 	fb.offerClick	= function(id){
@@ -55,6 +59,46 @@ $(document).ready(function(){
 		fb.closeCompany();
 		fb.openoffer(id, id ? false : true);
 	}
+	fb.addressClick	= function(id){
+		if (typeof(id) != "number") id = null;
+		var id	= id || $(this).attr('address_id');
+
+		if (!fb.current_company){
+			alert('Для создания адреса надо сохранить компанию.');
+			return;
+		}
+
+		fb.closeCompany();
+		fb.openaddress(id, id ? false : true);
+	}
 
 	$('.edit-offer').on('click', fb.offerClick)
 })
+
+fb.selectAddress = function(id){
+	var button	= $('#address_'+id);
+
+	if (button.hasClass('bg-primary')){
+		button.removeClass('bg-primary');
+		button.addClass('bg-info');
+		button.prop('selected', false);
+	}else{
+		button.addClass('bg-primary');
+		button.removeClass('bg-info');
+		button.prop('selected', true);
+	}
+
+//	if (button.hasClass('active')){
+//		button.removeClass('active')
+//	}else{
+//		button.addClass('active')
+//	}
+
+//	if (button.hasClass('btn-default')){
+//		button.removeClass('btn-default');
+//		button.addClass('btn-danger');
+//	}else{
+//		button.addClass('btn-default');
+//		button.removeClass('btn-danger');
+//	}
+}

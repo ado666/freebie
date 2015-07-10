@@ -21,6 +21,7 @@ $(document).ready(function(){
 			setTimeout(function(){
 				gmap.init('offer');
 				google.maps.event.addListener(gmap['map-offer'], 'click', function(event){
+					return;
 					if (!window.current_offer_is_my)	return;
 					var pos	= event.latLng;
 					var x	= pos.A;
@@ -124,6 +125,17 @@ $(document).ready(function(){
 		fd.append('lat', lat);
 		fd.append('lng', lng);
 
+		// omg addresses
+		var address_array = [];
+		var adds	= $('#addresses-list').children();
+		for (var i = 0, l = adds.length; i < l; i++){
+			var add = $(adds[i]);
+			if (add.prop('selected')){
+				address_array.push(add.attr('address_id'))
+			}
+		}
+		fd.append('addresses', address_array);
+
 		$.ajax({
 			url: "/offer/save",
 			method: "POST",
@@ -215,16 +227,29 @@ fb.openoffer	= function(id, clear){
 					$('#offer_icon').attr('src', 'img/blank.png');
 				}
 				$('#createoffermodal').modal('show');
-				if (data.lat && data.lng){
-					var x = data.lat;
-					var y = data.lng;
-					setTimeout(function(){
-						if (gmap.offerPin)	gmap.removePin('offer', gmap.offerPin)
-						gmap.offerPin	= gmap.addPin('offer', [x,y])[0]
-					},1000)
-
-					$('#offer_lat').text(x);
-					$('#offer_lng').text(y);
+//				if (data.lat && data.lng){
+//					var x = data.lat;
+//					var y = data.lng;
+//					setTimeout(function(){
+//						if (gmap.offerPin)	gmap.removePin('offer', gmap.offerPin)
+//						gmap.offerPin	= gmap.addPin('offer', [x,y])[0]
+//					},1000)
+//
+//					$('#offer_lat').text(x);
+//					$('#offer_lng').text(y);
+//				}
+				var addresses	= $('#addresses-list');
+				addresses.empty()
+				for (var i = 0, l = data.all_addresses.length; i < l; i++){
+					var is_checked	= false;
+					for (var n = 0, m = data.addresses.length; n < m; n++){
+						if(data.all_addresses[i].id == data.addresses[n].id)	is_checked = true;
+					}
+//					var str	= '<button id="address_'+data.all_addresses[i].id+'" type="button" onclick="fb.selectAddress('+data.all_addresses[i].id+')" class="btn btn-primary address-button">'+data.all_addresses[i].name+'</button>'
+					var str	= '<p address_id="'+data.all_addresses[i].id+'"id="address_'+data.all_addresses[i].id+'" onclick="fb.selectAddress('+data.all_addresses[i].id+')" class="bg-'+(is_checked?'primary':'info')+' address-button pointer">'+data.all_addresses[i].name+'</p>'
+					var elem = $(str)
+					elem.prop('selected', is_checked);
+					addresses.append(elem);
 				}
 			}
 		});
@@ -261,6 +286,28 @@ fb.openoffer	= function(id, clear){
 			$('#offer_icon').attr('src', 'img/blank.png');
 
 			if (gmap.offerPin)	gmap.removePin('offer', gmap.offerPin)
+
+			var fd	= new FormData();
+			fd.append('id', fb.current_company)
+
+			$.ajax({
+				url: "/company/get",
+				method: "POST",
+				data: fd,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function(data){
+					console.log('asd', data)
+					var addresses	= $('#addresses-list');
+					addresses.empty()
+					for (var i = 0, l = data.addresses.length; i < l; i++){
+	//					var str	= '<button id="address_'+data.all_addresses[i].id+'" type="button" onclick="fb.selectAddress('+data.all_addresses[i].id+')" class="btn btn-primary address-button">'+data.all_addresses[i].name+'</button>'
+						var str	= '<p address_id="'+data.addresses[i].id+'"id="address_'+data.addresses[i].id+'" onclick="fb.selectAddress('+data.addresses[i].id+')" class="bg-info address-button pointer">'+data.addresses[i].name+'</p>'
+						addresses.append($(str));
+					}
+				}
+			});
 		}
 		$('#createoffermodal').modal('show');
 	}
