@@ -137,6 +137,7 @@ gmap.init	=  function (map) {
 gmap.iconbase	= 'https://maps.google.com/mapfiles/kml/shapes/';
 
 gmap.getIcon	= function(type){
+	return;
 	if (type)	return 'img/pins/'+type+'.png';
 	return;
 	var icon	= gmap.iconbase;
