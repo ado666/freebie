@@ -24,7 +24,9 @@ gmap.init	=  function (map) {
 		success: function(data){
 			for (var i = 0, l = data.length; i < l; i++){
 				var offer	= data[i];
-				gmap.addPin('main', [offer.lat, offer.lng], offer.name, offer.icon, offer.id)
+				for (var n = 0, m = offer.addresses.length; n < m; n++){
+					gmap.addPin('main', [offer.addresses[n].lat, offer.addresses[n].lng], offer.name, offer.icon, offer.id)
+				}
 			}
 		}
 	});

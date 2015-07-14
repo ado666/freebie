@@ -16,31 +16,26 @@
                         <label for="comp_name">Name</label>
                         <input name="name" class="form-control" id="address_name" type="text"/>
                     </div>
+                    <div class="form-group">
+                        <label for="address_lat">Lat:</label>
+                        <span id="address_lat">0</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="address_lng">Lng:</label>
+                        <span id="address_lng">0</span>
+                    </div>
                 </fieldset>
             </div>
             <div class="col-md-6">
                 <input id="pac-input-address" class="controls my-controls form-controll" type="text" placeholder="Enter a location">
                 <div class="col-md-4" id="map-canvas-address"></div>
-                <div class="form-group">
-                    <label for="address_lat">Lat:</label>
-                    <span id="address_lat">0</span>
-                </div>
-                <div class="form-group">
-                    <label for="address_lng">Lng:</label>
-                    <span id="address_lng">0</span>
-                </div>
             </div>
-        </div>
-        <div class="row">
         </div>
         </form>
         <div class="row">
             <div class="col-md-1">
                 <button type="submit" class="btn btn-danger my-controls" id="delete_address">Delete</button>
             </div>
-{#            <div class="col-md-offset-8 col-md-1">#}
-{#                <button type="submit" class="btn btn-success" id="save_company1">Save1</button>#}
-{#            </div>#}
             <div class="col-md-offset-10 col-md-1">
                 <button type="submit" class="btn btn-success my-controls" id="save_address">Save</button>
             </div>
