@@ -4,16 +4,32 @@
 
 .datepicker{z-index:1151 !important;}
 
+/*.table_content {*/
+    /*max-height: 200px;*/
+    /*overflow-y: scroll;*/
+/*}*/
+
+.my-controls {
+    margin-top: 5px;
+}
+
+#offer_desc {
+    height: 70px;
+}
+
 #company_offers{
-    max-height: 300px;
+    max-height: 220px;
+    height: 220px;
     overflow-y: scroll;
 }
 #company_addresses{
-    max-height: 300px;
+    height: 220px;
+    max-height: 220px;
     overflow-y: scroll;
 }
 .header-fixed {
-    width: 100%
+    width: 100%;
+    border: skyblue 2px solid;
 }
 
 .address-button {
@@ -23,11 +39,12 @@
 
 #addresses-list{
     height: 200px;
+    width: 220px;
     overflow-y: scroll;
 }
 
 .modal-lg {
-    width: 1050px;
+    width: 1000px;
     /*overflow-y:auto;*/
     /*max-height:90%;*/
     /*margin-top:-45%;*/
@@ -57,8 +74,8 @@
 }
 
 .header-fixed > tbody {
-    overflow-y: auto;
-    height: 300px;
+    /*overflow-y: scroll;*/
+    /*height: 40%;*/
 }
 
 .header-fixed > tbody > tr > td {
@@ -79,20 +96,20 @@
     overflow-y: scroll;
 }
 #map-canvas-main {
-    width: 750px;
+    width: 600px;
     height: 600px;
     border: 1px solid black;
     border-radius: 5px;
 }
 #map-canvas-offer {
-    width: 300px;
-    height: 300px;
+    width: 220px;
+    height: 220px;
     border: 1px solid black;
     border-radius: 5px;
 }
 #map-canvas-address {
-    width: 500px;
-    height: 500px;
+    width: 470px;
+    height: 400px;
     border: 1px solid black;
     border-radius: 5px;
 }
@@ -316,7 +333,7 @@ html, body, #map-canvas {
         margin-left: 0px;
         padding: 0 11px 0 13px;
         text-overflow: ellipsis;
-        width: 500px;
+        width: 470px;
       }
 
       #pac-input:focus {

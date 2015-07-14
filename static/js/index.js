@@ -75,17 +75,21 @@ $(document).ready(function(){
 	$('.edit-offer').on('click', fb.offerClick)
 })
 
-fb.selectAddress = function(id){
+fb.offerPinPull	= {};
+fb.selectAddress = function(id, lat, lng){
 	var button	= $('#address_'+id);
 
 	if (button.hasClass('bg-primary')){
 		button.removeClass('bg-primary');
 		button.addClass('bg-info');
 		button.prop('selected', false);
+		gmap.removePin('offer', fb.offerPinPull[id])
 	}else{
 		button.addClass('bg-primary');
 		button.removeClass('bg-info');
 		button.prop('selected', true);
+		var pin	= gmap.addPin('offer', [lat, lng])[0];
+		fb.offerPinPull[id] = pin;
 	}
 
 //	if (button.hasClass('active')){

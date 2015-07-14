@@ -246,7 +246,12 @@ fb.openoffer	= function(id, clear){
 						if(data.all_addresses[i].id == data.addresses[n].id)	is_checked = true;
 					}
 //					var str	= '<button id="address_'+data.all_addresses[i].id+'" type="button" onclick="fb.selectAddress('+data.all_addresses[i].id+')" class="btn btn-primary address-button">'+data.all_addresses[i].name+'</button>'
-					var str	= '<p address_id="'+data.all_addresses[i].id+'"id="address_'+data.all_addresses[i].id+'" onclick="fb.selectAddress('+data.all_addresses[i].id+')" class="bg-'+(is_checked?'primary':'info')+' address-button pointer">'+data.all_addresses[i].name+'</p>'
+//					var str	= '<p address_id="'+data.addresses[i].id+'"id="address_'+data.addresses[i].id+'" onclick="fb.selectAddress('+data.addresses[i].id+', '+data.addresses[i].lat+', '+data.addresses[i].lng+')" class="bg-info address-button pointer">'+data.addresses[i].name+'</p>'
+					var str	= '<p address_id="'+data.all_addresses[i].id+'"id="address_'+data.all_addresses[i].id+'" onclick="fb.selectAddress('+data.all_addresses[i].id+', '+data.all_addresses[i].lat+', '+data.all_addresses[i].lng+')" class="bg-'+(is_checked?'primary':'info')+' address-button pointer">'+data.all_addresses[i].name+'</p>'
+					if (is_checked){
+						var pin = gmap.addPin('offer', [data.all_addresses[i].lat, data.all_addresses[i].lng])[0]
+						fb.offerPinPull[data.all_addresses[i].id] = pin;
+					}
 					var elem = $(str)
 					elem.prop('selected', is_checked);
 					addresses.append(elem);
@@ -298,12 +303,11 @@ fb.openoffer	= function(id, clear){
 				contentType: false,
 				processData: false,
 				success: function(data){
-					console.log('asd', data)
 					var addresses	= $('#addresses-list');
 					addresses.empty()
 					for (var i = 0, l = data.addresses.length; i < l; i++){
 	//					var str	= '<button id="address_'+data.all_addresses[i].id+'" type="button" onclick="fb.selectAddress('+data.all_addresses[i].id+')" class="btn btn-primary address-button">'+data.all_addresses[i].name+'</button>'
-						var str	= '<p address_id="'+data.addresses[i].id+'"id="address_'+data.addresses[i].id+'" onclick="fb.selectAddress('+data.addresses[i].id+')" class="bg-info address-button pointer">'+data.addresses[i].name+'</p>'
+						var str	= '<p address_id="'+data.addresses[i].id+'"id="address_'+data.addresses[i].id+'" onclick="fb.selectAddress('+data.addresses[i].id+', '+data.addresses[i].lat+', '+data.addresses[i].lng+')" class="bg-info address-button pointer">'+data.addresses[i].name+'</p>'
 						addresses.append($(str));
 					}
 				}
