@@ -110,6 +110,11 @@ def all(request):
     data = [o.json() for o in offers.all()]
     return HttpResponse(json.dumps(data), content_type = "application/json")
 
+def all_mobile(request):
+    offers  = Offer.objects
+    data = [o.json() for o in offers.all()]
+    return HttpResponse(json.dumps(data), content_type = "application/json")
+
 def getbycompany(request):
     cid = request.POST.get('cid')
 
