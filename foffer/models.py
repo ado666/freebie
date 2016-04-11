@@ -7,6 +7,10 @@ from fuser.models import User
 import json
 
 # Create your models here.
+class OfferCategory(models.Model):
+     id = models.AutoField(primary_key=True)
+     name = models.CharField(max_length=200)
+
 class Offer(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
@@ -30,6 +34,8 @@ class Offer(models.Model):
 
     lat         = models.FloatField(default=None)
     lng         = models.FloatField(default=None)
+
+    category    = models.ForeignKey(OfferCategory, related_name="offers")
 
     is_my       = False
 
@@ -67,6 +73,8 @@ class Offer(models.Model):
             'sa'   : self.sa,
             'su'   : self.su,
 
+            'category': self.category,
+
             'lat'  : self.lat,
             'lng'  : self.lng,
 
@@ -84,3 +92,4 @@ class OfferToUser(models.Model):
 
     class Meta:
         unique_together = (("offer", "user"),)
+
