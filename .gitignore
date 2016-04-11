@@ -8,6 +8,7 @@ static/img
 ./fcompany/migration
 ./faddress/migration
 ./freebie/settings_local.py
+settings_local.py
 freebie/settings_local.py
 static/img/offers/
 *.swp
