@@ -79,9 +79,10 @@ def save(request):
         thumb_path = settings.IMAGES_DIR + '/pins/' + request.user.username + str(o.id) + '.png'
         fout = open(path,'w')
         fout.write(file.read())
-        im = Image.open(file)
-        im.thumbnail((100, 100), Image.ANTIALIAS)
-        im.save(thumb_path, "PNG")
+        # print(file)
+        # im = Image.open(file)
+        # im.thumbnail((100, 100), Image.ANTIALIAS)
+        # im.save(thumb_path, "PNG")
         file.close()
         o.icon = request.user.username+''+str(o.id)
     else:

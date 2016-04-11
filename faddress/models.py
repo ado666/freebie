@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from fcompany.models import Company
+# from foffer.models import Offer
 from django.conf import settings
 
 # Create your models here.
@@ -16,6 +17,10 @@ class Address(models.Model):
     company = models.ForeignKey(Company, related_name="addresses")
 
     def json(self):
+
+        # offers = self.offers.all()
+        # print(offers)
+
         return {
             "id": self.id,
             "name": self.name,

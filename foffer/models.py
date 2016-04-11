@@ -1,8 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as DjangoUser
 from fcompany.models import Company
 from faddress.models import Address
 from django.conf import settings
+from fuser.models import User
 import json
 
 # Create your models here.
@@ -32,10 +33,10 @@ class Offer(models.Model):
 
     is_my       = False
 
-    user = models.ForeignKey(User, related_name="all_offers")
+    user = models.ForeignKey(DjangoUser, related_name="all_offers")
     company = models.ForeignKey(Company, related_name="offers")
 
-    addresses = models.ManyToManyField(Address)
+    addresses = models.ManyToManyField(Address, related_name="offers")
 
     def json(self):
         aa  = hasattr(self, "all_addresses")
@@ -73,3 +74,13 @@ class Offer(models.Model):
             'all_addresses': aa,
             'addresses': [a.json() for a in self.addresses.all()],
         }
+
+
+class OfferToUser(models.Model):
+
+    offer = models.ForeignKey(Offer)
+    user = models.ForeignKey(User)
+    last_send  = models.DateTimeField(default=None)
+
+    class Meta:
+        unique_together = (("offer", "user"),)

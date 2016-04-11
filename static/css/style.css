@@ -13,6 +13,10 @@
     margin-top: 5px;
 }
 
+.jumbotron {
+    padding: 10px;
+}
+
 #offer_desc {
     height: 70px;
 }

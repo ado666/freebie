@@ -185,8 +185,8 @@ gmap.removePin = function(map, id){
 
 gmap.getAddress = function(lat, lng, cb){
 	var geocoder = gmap.geocoder;
-var latlng = new google.maps.LatLng(lat, lng);
-  geocoder.geocode({
+	var latlng = new google.maps.LatLng(lat, lng);
+ 	geocoder.geocode({
     'latLng': latlng
   }, function (results, status) {
     if (status === google.maps.GeocoderStatus.OK) {

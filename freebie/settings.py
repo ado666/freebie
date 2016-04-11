@@ -140,6 +140,8 @@ INSTALLED_APPS = (
     'fcompany',
     'foffer',
     'faddress',
+    'flocation',
+    'fuser',
 )
 
 # A sample logging configuration. The only tangible logging

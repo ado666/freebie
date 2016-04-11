@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('fuser', '0002_user_last_login'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='user',
+            name='current_lat',
+            field=models.FloatField(default=None),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='user',
+            name='current_lng',
+            field=models.FloatField(default=None),
+            preserve_default=True,
+        ),
+    ]

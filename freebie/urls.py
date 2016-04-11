@@ -4,6 +4,8 @@ from index import views
 from fcompany import views as company_views
 from foffer import views as offer_views
 from faddress import views as address_views
+from fuser import views as user_views
+from flocation import views as location_views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -37,8 +39,10 @@ urlpatterns = patterns('',
     url(r'offer/delete$', offer_views.delete),
 
     url(r'address/save$', address_views.save),
+    url(r'address/all$', address_views.all),
     url(r'address/get$', address_views.get),
     url(r'address/getbycompany$', address_views.getbycompany),
-
-
+    
+    url(r'user/update_location', location_views.update_location),
+    url(r'user/hello', user_views.hello),
 )

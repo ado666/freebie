@@ -22,7 +22,7 @@ def save(request):
         a = Address.objects.get(pk=aid)
     else:
         a = Address()
-
+    print(lat, lng, cid, aid)
     company = Company.objects.get(pk=cid)
 
     a.company  = company
@@ -41,6 +41,10 @@ def getbycompany(request):
     company = Company.objects.get(pk=cid)
 
     data = [a.json() for a in company.addresses.all()]
+    return HttpResponse(json.dumps(data), content_type = "application/json")
+
+def all(request):
+    data = [a.json() for a in Address.objects.all()]
     return HttpResponse(json.dumps(data), content_type = "application/json")
 
 def get(request):

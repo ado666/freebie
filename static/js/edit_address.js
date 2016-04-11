@@ -12,8 +12,8 @@ $(document).ready(function(){
 				google.maps.event.addListener(gmap['map-address'], 'click', function(event){
 //					if (!window.current_addresss_is_my)	return;
 					var pos	= event.latLng;
-					var x	= pos.A;
-					var y	= pos.F;
+					var x	= pos.lat();
+					var y	= pos.lng();
 					if (gmap.addressPin)	gmap.removePin('address', gmap.addressPin)
 					gmap.addressPin	= gmap.addPin('address', [x,y])[0]
 //					gmap['map-address'].setZoom(15);
