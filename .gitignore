@@ -11,3 +11,6 @@ static/img
 freebie/settings_local.py
 static/img/offers/
 *.swp
+*.pm
+*.pem
+*.cer
