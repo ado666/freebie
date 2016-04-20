@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
+from fuser.models import User as Fuser
 from django.conf import settings
 from foffer.models import Offer, OfferCategory
 from fcompany.models import Company
@@ -113,6 +114,26 @@ def all(request):
     return HttpResponse(json.dumps(data), content_type = "application/json")
 
 def all_mobile(request):
+    uuid = request.POST.get('uuid', None)
+    token = request.POST.get('push_id', None)
+
+    try:
+        user = Fuser.objects.get(uuid=uuid)
+    except Fuser.DoesNotExist:
+        user = None
+
+    if user is None:
+        user = Fuser()
+        user.uuid = uuid
+        user.token = token
+
+    user.last_login = datetime.datetime.now()
+    user.last_send = datetime.datetime.min
+    user.current_lat = 0
+    user.current_lng = 0
+
+    user.save()
+
     offers  = Offer.objects
     data = [o.json() for o in offers.all()]
     return HttpResponse(json.dumps(data), content_type = "application/json")
@@ -149,4 +170,20 @@ def delete(request):
     o.delete()
 
     return HttpResponse('ok')
+
+def toFavorites(request):
+    uuid = request.POST.get('uuid', None)
+    oid = request.POST.get('offer_id')
+
+    try:
+        user = Fuser.objects.get(uuid=uuid)
+    except Fuser.DoesNotExist:
+        user = None
+
+    if not user:
+        return HttpResponse({"status": "user_not_found"}, content_type = "application/json")
+
+
+
+    return HttpResponse({"status": "ok"}, content_type = "application/json")
 
