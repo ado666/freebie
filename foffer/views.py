@@ -1,14 +1,16 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.conf import settings
-from foffer.models import Offer
+from foffer.models import Offer, OfferCategory
 from fcompany.models import Company
 from faddress.models import Address
 import datetime
 import json
 from PIL import Image
+
 
 
 # Create your views here.
@@ -34,8 +36,9 @@ def save(request):
     stime   = request.POST.get('stime') + ':00'
     etime   = request.POST.get('etime') + ':00'
 
-    lat      = request.POST.get('lat')
-    lng      = request.POST.get('lng')
+    lat     = request.POST.get('lat')
+    lng     = request.POST.get('lng')
+    cat     = request.POST.get('category')
 
     sdate   = datetime.datetime.strptime(sdate, "%d-%m-%Y").date()
     edate   = datetime.datetime.strptime(edate, "%d-%m-%Y").date()
@@ -64,9 +67,7 @@ def save(request):
 
     o.time_start    = stime
     o.time_end      = etime
-
-    # o.lat   = lat
-    # o.lng   = lng
+    o.category      = OfferCategory.objects.get(pk=cat)
 
     if url == 'img/blank.png':
         o.icon = ''

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User as DjangoUser
 from fcompany.models import Company
@@ -10,6 +11,18 @@ import json
 class OfferCategory(models.Model):
      id = models.AutoField(primary_key=True)
      name = models.CharField(max_length=200)
+
+     def __str__(self):
+         return self.name
+
+     def __unicode__(self):
+         return self.name
+
+     def json(self):
+         return {
+             'id': self.id,
+             'name': self.name
+         }
 
 class Offer(models.Model):
     id = models.AutoField(primary_key=True)
@@ -35,7 +48,7 @@ class Offer(models.Model):
     lat         = models.FloatField(default=None)
     lng         = models.FloatField(default=None)
 
-    category    = models.ForeignKey(OfferCategory, related_name="offers")
+    category    = models.ForeignKey(OfferCategory, related_name="offers", blank=True, default=1)
 
     is_my       = False
 
@@ -73,7 +86,7 @@ class Offer(models.Model):
             'sa'   : self.sa,
             'su'   : self.su,
 
-            'category': self.category,
+            'category': self.category.json(),
 
             'lat'  : self.lat,
             'lng'  : self.lng,

@@ -11,6 +11,7 @@ static/img
 settings_local.py
 freebie/settings_local.py
 static/img/offers/
+*DS_Store
 *.swp
 *.pm
 *.pem

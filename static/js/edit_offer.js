@@ -91,6 +91,7 @@ $(document).ready(function(){
 
 		var lat		= $('#offer_lat').html();
 		var lng		= $('#offer_lng').html();
+		var cat		= $('#offer_category').val();
 		// тут типа проверки
 
 		if (!sdate)	return alert('sdate');
@@ -124,6 +125,7 @@ $(document).ready(function(){
 
 		fd.append('lat', lat);
 		fd.append('lng', lng);
+		fd.append('category', cat);
 
 		// omg addresses
 		var address_array = [];
@@ -198,6 +200,7 @@ fb.openoffer	= function(id, clear){
 
 				$('#offer_time_start').val(shour);
 				$('#offer_time_end').val(ehour);
+				$('#offer_category').val(data.category.id);
 
 				$('#offer_mo').prop('checked', data.mo);
 				$('#offer_tu').prop('checked', data.tu);
