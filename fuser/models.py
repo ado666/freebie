@@ -32,3 +32,8 @@ class UserFavorites(models.Model):
 
     class Meta:
         unique_together = (("company", "user"),)
+
+    def json(self):
+        return {
+            "company": self.company.short()
+        }

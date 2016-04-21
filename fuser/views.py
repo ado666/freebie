@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from fuser.models import User
+from fuser.models import User, UserFavorites
 import datetime
 import json
 
@@ -37,3 +37,20 @@ def hello(request):
     user.save()
 
     return HttpResponse(json.dumps({'user': user.id}), content_type = "application/json")
+
+def get_favorites(request):
+    uuid = request.POST['uuid']
+    token = request.POST['push_id']
+
+    try:
+        user = User.objects.get(uuid=uuid)
+    except User.DoesNotExist:
+        user = None
+
+    if not user:
+        return
+
+    favorites = UserFavorites.objects.filter(user=user)
+    data = [o.json() for o in favorites.all()]
+
+    return HttpResponse(json.dumps({'favorites': data}), content_type = "application/json")

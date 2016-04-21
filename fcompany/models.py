@@ -21,3 +21,11 @@ class Company(models.Model):
             'addresses': [a.json() for a in self.addresses.all()],
             'is_my': self.is_my,
         }
+
+    def short(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'desc': self.desc,
+            'icon': self.icon
+        }
