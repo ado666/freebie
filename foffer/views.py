@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-from fuser.models import User as Fuser
+from django.core.exceptions import ObjectDoesNotExist
+from fuser.models import User as Fuser, UserFavorites
 from django.conf import settings
 from foffer.models import Offer, OfferCategory
 from fcompany.models import Company
@@ -183,7 +184,22 @@ def toFavorites(request):
     if not user:
         return HttpResponse({"status": "user_not_found"}, content_type = "application/json")
 
+    offer = Offer.objects.get(pk=oid)
+    company = offer.company
+
+    favorite= None
+    try:
+        favorite = UserFavorites.objects.get(user=user, company=company)
+    except ObjectDoesNotExist:
+        pass
 
 
-    return HttpResponse({"status": "ok"}, content_type = "application/json")
+    if favorite:
+        favorite.delete()
+        return HttpResponse({"status": "deleted"}, content_type = "application/json")
+
+    uf = UserFavorites(user=user, company=company)
+    uf.save()
+
+    return HttpResponse({"status": "created"}, content_type = "application/json")
 

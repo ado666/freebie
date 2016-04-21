@@ -1,4 +1,5 @@
 from django.db import models
+from fcompany.models import Company
 import datetime
 
 # Create your models here.
@@ -22,3 +23,12 @@ class User(models.Model):
             'uuid': self.uuid,
             'token': self.token,
         }
+
+
+class UserFavorites(models.Model):
+
+    company = models.ForeignKey(Company)
+    user = models.ForeignKey(User)
+
+    class Meta:
+        unique_together = (("company", "user"),)
