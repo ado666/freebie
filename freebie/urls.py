@@ -47,4 +47,5 @@ urlpatterns = patterns('',
     url(r'user/update_location', location_views.update_location),
     url(r'user/hello', user_views.hello),
     url(r'user/favorites', user_views.get_favorites),
+    url(r'user/favorite_delete', user_views.favorite_delete),
 )

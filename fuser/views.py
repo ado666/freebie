@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from fuser.models import User, UserFavorites
+from fcompany.models import Company
 import datetime
 import json
 
@@ -54,3 +55,23 @@ def get_favorites(request):
     data = [o.json() for o in favorites.all()]
 
     return HttpResponse(json.dumps({'favorites': data}), content_type = "application/json")
+
+def favorite_delete(request):
+    uuid = request.POST['uuid']
+    cid = request.POST['company_id']
+
+    try:
+        user = User.objects.get(uuid=uuid)
+    except User.DoesNotExist:
+        user = None
+
+    if not user:
+        return HttpResponse(json.dumps({'result': "not_found_user"}), content_type = "application/json")
+    print (cid)
+    company = Company.objects.get(pk=cid)
+    favorite = UserFavorites.objects.get(user=user, company=company)
+
+    print (favorite)
+    favorite.delete()
+
+    return HttpResponse(json.dumps({'result': "ok"}), content_type = "application/json")
