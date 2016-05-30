@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from flocation.models import Location
-from fuser.models import User
+from fuser.models import User as Fuser
 import datetime
 
 import json
@@ -11,26 +11,26 @@ import json
 def update_location(request):
     lng = request.POST['lng']
     lat = request.POST['lat']
-    user = request.POST['user']
+    uuid = request.POST.get('uuid', None)
 
     try:
-        u = User.objects.get(pk=user)
-    except:
-        u = None
+        user = Fuser.objects.get(uuid=uuid)
+    except Fuser.DoesNotExist:
+        user = None
 
-    if u is None:
+    if user is None:
         return HttpResponse(json.dumps({}), content_type = "application/json")
     
     l = Location()
     l.lng = lng
     l.lat = lat
-    l.user = u
+    l.user = user
     l.time = datetime.datetime.now()
 
-    u.current_lng = lng
-    u.current_lat = lat
+    user.current_lng = lng
+    user.current_lat = lat
 
     l.save()
-    u.save()
+    user.save()
 
     return HttpResponse(json.dumps({}), content_type = "application/json")

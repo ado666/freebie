@@ -43,9 +43,12 @@ urlpatterns = patterns('',
     url(r'address/all$', address_views.all),
     url(r'address/get$', address_views.get),
     url(r'address/getbycompany$', address_views.getbycompany),
-    
+
     url(r'user/update_location', location_views.update_location),
     url(r'user/hello', user_views.hello),
+    url(r'user/get', user_views.get),
     url(r'user/favorites', user_views.get_favorites),
     url(r'user/favorite_delete', user_views.favorite_delete),
+
+    url(r'settings/category', offer_views.category_update),
 )

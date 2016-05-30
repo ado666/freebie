@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from fuser.models import User as Fuser, UserFavorites
 from django.conf import settings
-from foffer.models import Offer, OfferCategory
+from foffer.models import Offer, OfferCategory, CategoryToUser
 from fcompany.models import Company
 from faddress.models import Address
 import datetime
@@ -203,3 +203,26 @@ def toFavorites(request):
 
     return HttpResponse({"status": "created"}, content_type = "application/json")
 
+def category_update(request):
+    uuid = request.POST['uuid']
+    category_id = request.POST['category_id']
+    value = request.POST['value']
+
+    try:
+        user = Fuser.objects.get(uuid=uuid)
+    except Fuser.DoesNotExist:
+        user = None
+
+    if not user:
+        return HttpResponse({"status": "user_not_found"}, content_type = "application/json")
+
+    category = OfferCategory.objects.get(pk=category_id)
+
+    user_category, created = CategoryToUser.objects.get_or_create(
+         user=user,
+         category=category
+    )
+    user_category.value = value
+    user_category.save()
+
+    return HttpResponse(json.dumps({'result': "ok"}), content_type = "application/json")

@@ -106,3 +106,18 @@ class OfferToUser(models.Model):
     class Meta:
         unique_together = (("offer", "user"),)
 
+class CategoryToUser(models.Model):
+
+    user = models.ForeignKey(User)
+    category = models.ForeignKey(OfferCategory)
+    value = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = (("user", "category"),)
+
+    def json(self):
+        return {
+            # "user": self.user.json(),
+            "category_id": self.category.id,#json(),
+            "value": self.value
+        }

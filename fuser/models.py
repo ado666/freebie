@@ -1,5 +1,6 @@
 from django.db import models
 from fcompany.models import Company
+# from foffer.models import OfferCategory
 import datetime
 
 # Create your models here.
@@ -37,3 +38,4 @@ class UserFavorites(models.Model):
         return {
             "company": self.company.short()
         }
+

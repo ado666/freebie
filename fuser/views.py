@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from fuser.models import User, UserFavorites
 from fcompany.models import Company
+from foffer.models import OfferCategory, CategoryToUser
 import datetime
 import json
 
@@ -67,11 +68,35 @@ def favorite_delete(request):
 
     if not user:
         return HttpResponse(json.dumps({'result': "not_found_user"}), content_type = "application/json")
-    print (cid)
+
     company = Company.objects.get(pk=cid)
     favorite = UserFavorites.objects.get(user=user, company=company)
 
-    print (favorite)
     favorite.delete()
+
+    return HttpResponse(json.dumps({'result': "ok"}), content_type = "application/json")
+
+def get(request):
+    categories = OfferCategory.objects
+    category_to_user = CategoryToUser.objects.all()
+
+    categories = [o.json() for o in categories.all()]
+    categories_config = {}
+    for cc in category_to_user:
+        item = cc.json()
+        categories_config[item['category_id']] = item['value']
+
+    return HttpResponse(json.dumps({
+        'result': "ok",
+        'data': {
+            'categories': categories,
+            'categories_config': categories_config
+        }
+    }), content_type = "application/json")
+
+def category_update(request):
+    uuid = request.POST['uuid']
+    category_id = request.POST['category_id']
+    value = request.POST['value']
 
     return HttpResponse(json.dumps({'result': "ok"}), content_type = "application/json")
