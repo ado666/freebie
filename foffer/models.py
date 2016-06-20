@@ -70,6 +70,7 @@ class Offer(models.Model):
             'desc': self.desc,
             'dist': self.dist,
             'icon': self.icon,
+            'compId': self.company.id,
 
             # 'sdate': self.date_start.strftime("%A, %d. %B %Y %I:%M%p"),
             'sdate': self.date_start.strftime("%d-%m-%Y"),

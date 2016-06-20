@@ -192,6 +192,8 @@ fb.openoffer	= function(id, clear){
 				$('#offer_icon').val(data.icon);
 				$('#offer_dist').val(data.dist);
 
+				fb.current_company = data.compId
+
 				$('#offer_date_start').datepicker('setValue', data.sdate);
 				$('#offer_date_end').datepicker('setValue', data.edate);
 

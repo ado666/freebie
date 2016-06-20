@@ -50,10 +50,9 @@ def save(request):
     else:
         o = Offer()
         o.user     = request.user
+        company = Company.objects.get(pk=cid)
+        o.company  = company
 
-    company = Company.objects.get(pk=cid)
-
-    o.company  = company
     o.name  = name
     o.desc  = desc
     o.dist  = dist

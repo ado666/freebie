@@ -77,8 +77,18 @@ def favorite_delete(request):
     return HttpResponse(json.dumps({'result': "ok"}), content_type = "application/json")
 
 def get(request):
+    uuid = request.POST['uuid']
+
+    try:
+        user = User.objects.get(uuid=uuid)
+    except User.DoesNotExist:
+        user = None
+
+    if not user:
+        return
+
     categories = OfferCategory.objects
-    category_to_user = CategoryToUser.objects.all()
+    category_to_user = CategoryToUser.objects.filter(user=user)
 
     categories = [o.json() for o in categories.all()]
     categories_config = {}
@@ -86,11 +96,13 @@ def get(request):
         item = cc.json()
         categories_config[item['category_id']] = item['value']
 
+    print(categories_config)
     return HttpResponse(json.dumps({
         'result': "ok",
         'data': {
             'categories': categories,
-            'categories_config': categories_config
+            'categories_config': categories_config,
+            'favorite_companies': {}
         }
     }), content_type = "application/json")
 
