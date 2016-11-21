@@ -27,7 +27,7 @@ class OfferCategory(models.Model):
 class Offer(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
-    desc = models.CharField(max_length=200)
+    desc = models.CharField(max_length=1024)
 
     dist = models.CharField(max_length=5)
     icon = models.CharField(max_length=200)

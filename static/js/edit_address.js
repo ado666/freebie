@@ -16,12 +16,11 @@ $(document).ready(function(){
 					var y	= pos.lng();
 					if (gmap.addressPin)	gmap.removePin('address', gmap.addressPin)
 					gmap.addressPin	= gmap.addPin('address', [x,y])[0]
-//					gmap['map-address'].setZoom(15);
-
 
 					$('#address_lat').text(x);
 					$('#address_lng').text(y);
 					gmap.getAddress(x,y,function(geo){
+						console.log(123321, geo)
 						$('#pac-input-address').val(geo.formatted_address);
 					})
 				});

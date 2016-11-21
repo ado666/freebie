@@ -92,8 +92,8 @@ gmap.init	=  function (map) {
 		var autocomplete = new google.maps.places.Autocomplete(input);
 		autocomplete.bindTo('bounds', gmap['map-address']);
 
-		google.maps.event.addListener(autocomplete, 'place_changed', function() {
-			infowindow.close();
+		autocomplete.addListener('place_changed', function() {
+//			infowindow.close();
 			var place = autocomplete.getPlace();
 			if (!place.geometry) {
 				window.alert("Autocomplete's returned place contains no geometry");
@@ -108,8 +108,8 @@ gmap.init	=  function (map) {
 				map.setZoom(17);  // Why 17? Because it looks good.
 			}
 
-			var x = place.geometry.location.A;
-			var y = place.geometry.location.F;
+			var x = place.geometry.location.lat();
+			var y = place.geometry.location.lng();
 
 			if (gmap.addressPin)	gmap.removePin('address', gmap.addressPin)
 			var pin	= gmap.addPin('address', [x,y]);
